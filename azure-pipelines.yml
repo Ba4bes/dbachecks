@@ -23,10 +23,11 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
-      Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+      Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
+      Install-Module dbatools -Scope CurrentUser
       Install-Module Pester -Force -SkipPublisherCheck
-      Install-Module PSFramework -Force 
-      Install-Module dbatools -Force -Scope CurrentUser
+      # Install-Module PSFramework -Force 
+      # Install-Module dbatools -Force -Scope CurrentUser
       Import-Module .\dbachecks.psd1
     errorActionPreference: 'continue'
   displayName: 'installeermodules'
