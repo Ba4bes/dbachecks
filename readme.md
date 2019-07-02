@@ -1,6 +1,6 @@
 # dbachecks
-
-<img align="left" src="https://user-images.githubusercontent.com/8278033/34322840-ed09114e-e832-11e7-9670-9baa686ade71.png">  
+#test
+<img align="left" src="https://user-images.githubusercontent.com/8278033/34322840-ed09114e-e832-11e7-9670-9baa686ade71.png">
 
 dbachecks is a framework created by and for SQL Server pros who need to validate their environments. Basically, we all share similar checklists and mostly just the server names and RPO/RTO/etc change.
 
@@ -31,7 +31,7 @@ Have questions about development? Please visit our [Wiki](https://github.com/sql
           <td>Master Branch Release - Release to PowerShell Gallery <a href="https://sqlcollaborative.visualstudio.com/dbachecks/_releases2?definitionId=3&view=mine&_a=releases" target="_blank">Click Here</a></td>
     </tr>
   </tbody>
-</table> 
+</table>
 
 Want to know how our CD process works? Read this [blog post](https://sqldbawithabeard.com/2018/05/01/version-update-code-signing-and-publishing-to-the-powershell-gallery-with-vsts/) and see how the team manage it
 
@@ -52,11 +52,11 @@ When you import, it'll auto-import
 * Pester
 * PSFramework
 
-If you have already installed the module and you update it, you may be required to update the Pester or the PSFramework modules before it will import. If you see a message like 
+If you have already installed the module and you update it, you may be required to update the Pester or the PSFramework modules before it will import. If you see a message like
 
 ![error](https://user-images.githubusercontent.com/6729780/35032185-dfe988a2-fb5d-11e7-83e3-6a41a9c89b81.png)
 
-Then you need to 
+Then you need to
 
 ````
 Install-Module Pester -SkipPublisherCheck -Force
@@ -156,7 +156,7 @@ The above report uses `Update-DbcPowerBiDataSource`'s `-Environment` parameter.
 
 ```powershell
 # Run checks and export its JSON
-Invoke-DbcCheck -SqlInstance $prod -Checks LastBackup -Show Summary -PassThru | 
+Invoke-DbcCheck -SqlInstance $prod -Checks LastBackup -Show Summary -PassThru |
 Update-DbcPowerBiDataSource -Environment Prod
 ```
 
