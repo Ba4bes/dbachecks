@@ -23,15 +23,17 @@ steps:
   inputs:
     targetType: 'inline'
     script:
+      Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
       Install-Module Pester -Force -SkipPublisherCheck
       Install-Module PSFramework -Force 
-      Install-Module dbatools -Force 
+      Install-Module dbatools -Force -Scope CurrentUser
       Import-Module .\dbachecks.psd1
     errorActionPreference: 'continue'
   displayName: 'installeermodules'
 
 - powershell: |
         get-childitem c:\modules
+        get-module Pester
         (get-installedmodule Pester).InstalledLocation
   displayName: "pad laten zien"
 
