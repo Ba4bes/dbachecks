@@ -31,9 +31,8 @@ steps:
   displayName: 'installeermodules'
 
 - powershell: |
-        $path = "C:\Program Files\WindowsPowerShell\Modules\dbatools\1.0.12\bin\smo"
-        get-childitem $path
         (get-installedmodule dbatools).InstalledLocation
+        (get-installedmodule Pester).InstalledLocation
   displayName: "pad laten zien"
 
 - powershell: |
