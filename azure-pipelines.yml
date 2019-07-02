@@ -19,17 +19,21 @@ steps:
   displayName: 'Run a multi-line script'
 
 
-- powershell: |
-   Install-Module Pester -Force -SkipPublisherCheck
-   Install-Module PSFramework -Force 
-   Install-Module dbatools -Force 
-   Import-Module .\dbachecks.psd1
-  failOnStderr: false
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script:
+      Install-Module Pester -Force -SkipPublisherCheck
+      Install-Module PSFramework -Force 
+      Install-Module dbatools -Force 
+      Import-Module .\dbachecks.psd1
+    errorActionPreference: 'continue'
   displayName: 'installeermodules'
 
 - powershell: |
         $path = "C:\Program Files\WindowsPowerShell\Modules\dbatools\1.0.12\bin\smo"
         get-childitem $path
+        (get-installedmodule dbatools).InstalledLocation
   displayName: "pad laten zien"
 
 - powershell: |
@@ -46,3 +50,4 @@ steps:
       testRunner: 'NUnit'
       testResultsFiles: './TEST-RESULTS.xml'
       failTaskOnFailedTests: true # required to fail build when tests fail
+
