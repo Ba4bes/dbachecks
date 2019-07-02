@@ -31,7 +31,7 @@ steps:
   displayName: 'installeermodules'
 
 - powershell: |
-
+        get-childitem c:\modules
         (get-installedmodule Pester).InstalledLocation
   displayName: "pad laten zien"
 
