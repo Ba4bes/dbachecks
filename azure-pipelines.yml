@@ -19,9 +19,9 @@ steps:
   displayName: 'Run a multi-line script'
 
 - powershell: |
-   Install-Module Pester  -Scope CurrentUser -Force -SkipPublisherCheck
-   Install-Module PSFramework  -RequiredVersion $PsFrameworkVersion  -Scope CurrentUser -Force 
-   Install-Module dbatools  -RequiredVersion $dbatoolsVersion  -Scope CurrentUser -Force 
+   Install-Module Pester -Force -SkipPublisherCheck
+   Install-Module PSFramework  -RequiredVersion $PsFrameworkVersion  -Force 
+   Install-Module dbatools  -RequiredVersion $dbatoolsVersion  -Force 
    Import-Module .\dbachecks.psd1
 
 - powershell: |
