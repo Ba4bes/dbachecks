@@ -31,7 +31,7 @@ steps:
   displayName: 'installeermodules'
 
 - powershell: |
-        (get-installedmodule dbatools).InstalledLocation
+
         (get-installedmodule Pester).InstalledLocation
   displayName: "pad laten zien"
 
