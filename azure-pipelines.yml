@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'vmImage: windows-2019'
 
 steps:
 - script: echo Hello, world!
@@ -17,3 +17,24 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- powershell: |
+   Install-Module Pester  -Scope CurrentUser -Force -SkipPublisherCheck
+   Install-Module PSFramework  -RequiredVersion $PsFrameworkVersion  -Scope CurrentUser -Force 
+   Install-Module dbatools  -RequiredVersion $dbatoolsVersion  -Scope CurrentUser -Force 
+   Import-Module .\dbachecks.psd1
+
+- powershell: |
+        $outputFile = ".\TEST-RESULTS.xml"
+
+        Invoke-Pester -OutputFile $outputFile -OutputFormat NUnitXml -enableExit
+  failOnStderr: false
+  displayName: 'Invoke-Pester'
+- task: PublishTestResults@2
+  displayName: Publish Test Results
+  inputs:
+      testRunTitle: 'Test Results for Pester'
+      buildPlatform: 'Windows'
+      testRunner: 'NUnit'
+      testResultsFiles: './TEST-RESULTS.xml'
+      failTaskOnFailedTests: true # required to fail build when tests fail
