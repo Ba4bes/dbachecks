@@ -18,40 +18,44 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-
 - task: PowerShell@2
   inputs:
-    targetType: 'inline'
-    script: |
-      Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
-      Install-Module dbatools -Scope CurrentUser -Force -Verbose
-      Install-Module Pester -Force -SkipPublisherCheck
-       Install-Module PSFramework -Force 
+    filePath: 'builddocs.ps1'
+
+# - task: PowerShell@2
+#   inputs:
+#     targetType: 'inline'
+#     script: |
+#       Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
+#       Install-Module dbatools -Scope CurrentUser -Force -Verbose
+#       Install-Module Pester -Force -SkipPublisherCheck
+#        Install-Module PSFramework -Force 
       
-       Import-Module  Import-Module "$(Build.SourcesDirectory)\dbachecks.psd1" -force
-    errorActionPreference: 'continue'
-  displayName: 'installeermodules'
+#        Import-Module  Import-Module "$(Build.SourcesDirectory)\dbachecks.psd1"
+      
+#     errorActionPreference: 'continue'
+#   displayName: 'installeermodules'
 
-- powershell: |
-        get-childitem c:\modules
-        get-module Pester
-        Get-Module Dbatools
-        (get-installedmodule Pester).InstalledLocation
-        (get-installedmodule dbatools).InstalledLocation
-  displayName: "pad laten zien"
+# - powershell: |
+#         get-childitem c:\modules
+#         get-module Pester
+#         Get-Module Dbatools
+#         (get-installedmodule Pester).InstalledLocation
+#         (get-installedmodule dbatools).InstalledLocation
+#   displayName: "pad laten zien"
 
-- powershell: |
-        $outputFile = ".\TEST-RESULTS.xml"
+# - powershell: |
+#         $outputFile = ".\TEST-RESULTS.xml"
 
-        Invoke-Pester -OutputFile $outputFile -OutputFormat NUnitXml -enableExit
-  failOnStderr: false
-  displayName: 'Invoke-Pester'
-- task: PublishTestResults@2
-  displayName: Publish Test Results
-  inputs:
-      testRunTitle: 'Test Results for Pester'
-      buildPlatform: 'Windows'
-      testRunner: 'NUnit'
-      testResultsFiles: './TEST-RESULTS.xml'
-      failTaskOnFailedTests: true # required to fail build when tests fail
+#         Invoke-Pester -OutputFile $outputFile -OutputFormat NUnitXml -enableExit
+#   failOnStderr: false
+#   displayName: 'Invoke-Pester'
+# - task: PublishTestResults@2
+#   displayName: Publish Test Results
+#   inputs:
+#       testRunTitle: 'Test Results for Pester'
+#       buildPlatform: 'Windows'
+#       testRunner: 'NUnit'
+#       testResultsFiles: './TEST-RESULTS.xml'
+#       failTaskOnFailedTests: true # required to fail build when tests fail
 
