@@ -26,9 +26,9 @@ steps:
    Import-Module .\dbachecks.psd1
 
 - powershell: |
-    $path = "C:\Program Files\WindowsPowerShell\Modules\dbatools\1.0.12\bin\smo"
-    get-childitem $path
-  displayname: "pad laten zien"
+        $path = "C:\Program Files\WindowsPowerShell\Modules\dbatools\1.0.12\bin\smo"
+        get-childitem $path
+  displayName: "pad laten zien"
 
 - powershell: |
         $outputFile = ".\TEST-RESULTS.xml"
