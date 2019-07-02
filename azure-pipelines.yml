@@ -28,7 +28,7 @@ steps:
       Install-Module Pester -Force -SkipPublisherCheck
        Install-Module PSFramework -Force 
       
-       Import-Module  Import-Module "$(Build.SourcesDirectory)\dbachecks.psd1"
+       Import-Module  Import-Module \dbachecks.psd1
       
     errorActionPreference: 'stop'
   displayName: 'installeermodules'
