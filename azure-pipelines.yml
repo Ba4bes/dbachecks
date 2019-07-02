@@ -44,18 +44,18 @@ steps:
 #         (get-installedmodule dbatools).InstalledLocation
 #   displayName: "pad laten zien"
 
-# - powershell: |
-#         $outputFile = ".\TEST-RESULTS.xml"
+- powershell: |
+        $outputFile = ".\TEST-RESULTS.xml"
 
-#         Invoke-Pester -OutputFile $outputFile -OutputFormat NUnitXml -enableExit
-#   failOnStderr: false
-#   displayName: 'Invoke-Pester'
-# - task: PublishTestResults@2
-#   displayName: Publish Test Results
-#   inputs:
-#       testRunTitle: 'Test Results for Pester'
-#       buildPlatform: 'Windows'
-#       testRunner: 'NUnit'
-#       testResultsFiles: './TEST-RESULTS.xml'
-#       failTaskOnFailedTests: true # required to fail build when tests fail
+        Invoke-Pester -OutputFile $outputFile -OutputFormat NUnitXml -enableExit
+  failOnStderr: false
+  displayName: 'Invoke-Pester'
+- task: PublishTestResults@2
+  displayName: Publish Test Results
+  inputs:
+      testRunTitle: 'Test Results for Pester'
+      buildPlatform: 'Windows'
+      testRunner: 'NUnit'
+      testResultsFiles: './TEST-RESULTS.xml'
+      failTaskOnFailedTests: true # required to fail build when tests fail
 
