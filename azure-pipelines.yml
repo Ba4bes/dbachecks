@@ -21,8 +21,8 @@ steps:
 
 - powershell: |
    Install-Module Pester -Force -SkipPublisherCheck
-   Install-Module PSFramework  -RequiredVersion $PsFrameworkVersion  -Force 
-   Install-Module dbatools  -RequiredVersion $dbatoolsVersion  -Force 
+   Install-Module PSFramework -Force 
+   Install-Module dbatools -Force 
    Import-Module .\dbachecks.psd1
 
 - powershell: |
