@@ -24,6 +24,8 @@ steps:
    Install-Module PSFramework -Force 
    Install-Module dbatools -Force 
    Import-Module .\dbachecks.psd1
+  failOnStderr: false
+  displayName: 'installeermodules'
 
 - powershell: |
         $path = "C:\Program Files\WindowsPowerShell\Modules\dbatools\1.0.12\bin\smo"
