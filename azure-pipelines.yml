@@ -18,11 +18,17 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+
 - powershell: |
    Install-Module Pester -Force -SkipPublisherCheck
    Install-Module PSFramework  -RequiredVersion $PsFrameworkVersion  -Force 
    Install-Module dbatools  -RequiredVersion $dbatoolsVersion  -Force 
    Import-Module .\dbachecks.psd1
+
+- powershell: |
+    $path = "C:\Program Files\WindowsPowerShell\Modules\dbatools\1.0.12\bin\smo"
+    get-childitem $path
+  displayname: "pad laten zien"
 
 - powershell: |
         $outputFile = ".\TEST-RESULTS.xml"
