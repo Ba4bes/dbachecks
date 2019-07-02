@@ -18,23 +18,20 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
+
 - task: PowerShell@2
   inputs:
-    filePath: 'builddocs.ps1'
-
-# - task: PowerShell@2
-#   inputs:
-#     targetType: 'inline'
-#     script: |
-#       Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
-#       Install-Module dbatools -Scope CurrentUser -Force -Verbose
-#       Install-Module Pester -Force -SkipPublisherCheck
-#        Install-Module PSFramework -Force 
+    targetType: 'inline'
+    script: |
+      Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
+      Install-Module dbatools -Scope CurrentUser -Force -Verbose
+      Install-Module Pester -Force -SkipPublisherCheck
+       Install-Module PSFramework -Force 
       
-#        Import-Module  Import-Module "$(Build.SourcesDirectory)\dbachecks.psd1"
+       Import-Module  Import-Module "$(Build.SourcesDirectory)\dbachecks.psd1"
       
-#     errorActionPreference: 'continue'
-#   displayName: 'installeermodules'
+    errorActionPreference: 'stop'
+  displayName: 'installeermodules'
 
 # - powershell: |
 #         get-childitem c:\modules
