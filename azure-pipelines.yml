@@ -26,9 +26,9 @@ steps:
       Install-PackageProvider -Name NuGet -Scope CurrentUser -Force
       Install-Module dbatools -Scope CurrentUser -Force -Verbose
       Install-Module Pester -Force -SkipPublisherCheck
-      # Install-Module PSFramework -Force 
-      # Install-Module dbatools -Force -Scope CurrentUser
-      # Import-Module .\dbachecks.psd1
+       Install-Module PSFramework -Force 
+      
+       Import-Module .\dbachecks.psd1
     errorActionPreference: 'continue'
   displayName: 'installeermodules'
 
