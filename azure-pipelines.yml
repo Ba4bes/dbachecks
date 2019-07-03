@@ -18,14 +18,6 @@ steps:
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
 
-- powershell: |
-        get-childitem $(Build.SourcesDirectory)
-        get-module Pester
-        Get-Module Dbatools
-        (get-installedmodule Pester).InstalledLocation
-        (get-installedmodule dbatools).InstalledLocation
-  displayName: "pad laten zien"
-
 - task: PowerShell@2
   inputs:
     targetType: 'inline'
@@ -35,7 +27,7 @@ steps:
       Install-Module Pester -Force -SkipPublisherCheck
        Install-Module PSFramework -Force 
        install-module dbachecks -verbose
-       Import-Module  dbachecks.psd1" -verbose
+       Import-Module  $(Build.SourcesDirectory)\dbachecks.psd1 -verbose
       
     errorActionPreference: 'stop'
   displayName: 'installeermodules'
