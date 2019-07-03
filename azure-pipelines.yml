@@ -27,8 +27,8 @@ steps:
       Install-Module dbatools -Scope CurrentUser -Force -Verbose
       Install-Module Pester -Force -SkipPublisherCheck
        Install-Module PSFramework -Force 
-       import-module dbatools
-       Import-Module  ".\dbachecks.psd1" -verbose
+       install-module dbachecks -verbose
+      # Import-Module  dbachecks.psd1" -verbose
       
     errorActionPreference: 'stop'
   displayName: 'installeermodules'
